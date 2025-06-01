@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard</title>
+</head>
+<body>
+  <h1>Welcome, {{ current_user.email }}</h1>
+  <p><a href="{{ url_for('add_password') }}">Add new password</a> | <a href="{{ url_for('logout') }}">Logout</a></p>
+
+  {% if passwords %}
+    <table border="1" cellpadding="5" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Site</th>
+          <th>Login</th>
+          <th>Password</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pwd in passwords %}
+          <tr>
+            <td>{{ pwd.site }}</td>
+            <td>{{ pwd.login }}</td>
+            <td>{{ pwd.password }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No saved passwords yet.</p>
+  {% endif %}
+</body>
+</html>
